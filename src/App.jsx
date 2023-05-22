@@ -1,28 +1,27 @@
-import React from "react"
-import { User } from './components/User'
-import { Text } from "@chakra-ui/react"
-
+import React, { useState } from "react"
+import { Box, Button, Flex, Heading } from "@chakra-ui/react"
+import { UserTable } from "./components/Users"
 
 const App = () => {
+  // let variablaNje = 'Hello world!'
+  // const [variablaNje, setVariablaNje] = useState(1)
+
+  /*   const ndryshimi = () => {
+      const numriRandom = Math.random()
+      setVariablaNje(numriRandom)
+    } */
+
   return (
-    <div>
-      <Text color='red' fontSize='3xl'>
-        Enis Nishori
-      </Text>
-      <User
-        emri='Enis'
-        placeholder='sheno emrin e enisit ketu'
-      />
-      <User
-        emri='Mentor'
-        placeholder='sheno emrin e mentorit ketu'
-      />
-    </div>
+    <Box >
+      {/* <Button onClick={ndryshimi}>Ndrysho</Button> */}
+      <Flex>
+
+        {/* {variablaNje} */}
+
+        <UserTable />
+      </Flex>
+    </Box>
   )
 }
-
-/* function App() {
-  return <div>hello world!</div>
-} */
 
 export default App

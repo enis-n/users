@@ -1,13 +1,12 @@
 import React from "react"
-import { Input } from "@chakra-ui/react"
+import { Tr, Td } from "@chakra-ui/react"
 
-export const User = (props) => {
+export const User = ({ id, emri, mbiemri }) => {
     return (
-        <div>
-            <h2>{props.emri}</h2>
-            <Input placeholder={props.placeholder} />
-        </div>
+        <Tr>
+            <Td>{id}</Td>
+            <Td>{emri}</Td>
+            <Td>{mbiemri}</Td>
+        </Tr>
     )
 }
-
-// export default User
