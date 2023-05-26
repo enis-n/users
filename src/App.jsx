@@ -1,24 +1,58 @@
-import React, { useState } from "react"
-import { Box, Button, Flex, Heading } from "@chakra-ui/react"
-import { UserTable } from "./components/Users"
+import React, { useEffect, useState } from "react"
+import { Box, Button, Flex, Heading, Spinner, list } from "@chakra-ui/react"
+import { UserTable } from "./components/UserTable"
 
 const App = () => {
-  // let variablaNje = 'Hello world!'
-  // const [variablaNje, setVariablaNje] = useState(1)
+  // const [lista, setLista] = useState([{ id: 0, emri: 'placehoder', mbiemri: 'placeholder' }])
+  const [userat, setUserat] = useState(null)
 
-  /*   const ndryshimi = () => {
-      const numriRandom = Math.random()
-      setVariablaNje(numriRandom)
-    } */
+  const [fromaKomplete, setFormaKomplete] = useState({
+    id: '',
+    emri: '',
+    mbiemri: '',
+  })
+
+  const funksioniShto = () => {
+    setLista(prev => [
+      ...prev,
+      {
+        id: fromaKomplete.id,
+        emri: fromaKomplete.emri,
+        mbiemri: fromaKomplete.mbiemri
+      },
+    ])
+  }
+
+  const handleChange = (event) => {
+    const { value, name } = event.target
+    setFormaKomplete(
+      vleraParaprake => ({
+        ...vleraParaprake,
+        [name]: value,
+      })
+    )
+  }
+
+  useEffect(() => {
+    const response = fetch('https://dummyjson.com/users')
+    response
+      .then(res => res.json())
+      .then(rezultati => setUserat(rezultati))
+  }, [])
+
+  if (!userat) {
+    return <Spinner />
+  }
 
   return (
     <Box >
-      {/* <Button onClick={ndryshimi}>Ndrysho</Button> */}
       <Flex>
-
-        {/* {variablaNje} */}
-
-        <UserTable />
+        <UserTable
+          handleChange={handleChange}
+          fromaKomplete={fromaKomplete}
+          lista={userat}
+          funksioniShto={funksioniShto}
+        />
       </Flex>
     </Box>
   )
